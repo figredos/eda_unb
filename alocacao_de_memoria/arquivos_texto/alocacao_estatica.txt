@@ -1,0 +1,19 @@
+ALOCAÇÃO ESTÁTICA
+
+
+- O QUE É
+        Alocação estáticaocorre com variáveis globais (alocadas fora de funções) ou quando variáveis locais (internas de
+        uma função) são alocadas usando o modificador "static". Uma variável alocada estaticamente mantém seu valor 
+        durante toda da vida do programa, exceto quando explicitamente modificada.
+
+- EXEMPLO 'alocacao_estatica.c'
+        Nesse diretório é encontrado um exemplo de alocação estática no arquivo 'alocacao_estatica.c'. Ao rodar o código
+        desse arquivo, percebe-se que as variáveis 'a' e 'c' tem valores aumentados a cada iteração do loop for, enqua-
+        nto o valor de 'b' se mantém como 0, isso se da pois os valores de 'a' e 'c' são alocados estaticamente, possi-
+        bilitando que seus valores se mantenham apesar do reinício do loop for, enquanto o valor de 'b' não é preservado
+        visto que é alocado automáticamente.
+
+- USO DE VARIÁVEIS LOCAIS GRANDES
+        A pilha de execução do programa normalmente é pequena (8MB ou menos). Por isso a tentativa de alocar variáveis
+        locais muito grandes pode resultar em erro de compilação, ou de execução (SIGSEGV - Segmentation Fault). Para 
+        tais situações devem ser usadas variáveis globais (estáticas) ou variáveis dinâmicas.
