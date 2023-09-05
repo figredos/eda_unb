@@ -1,0 +1,40 @@
+Alocação de memória
+
+
+- O QUE É
+        A alocação de memória consiste no processo de solicitar/utilizar memória durante o processo de execução de um 
+        programa. É uma das bases da ciência da computação, e envolve uma série de conhecimentos, como os abordados abaixo.
+
+    OBS.:
+        Cada byte tem 8 bits, e possui um local específico na memória.
+
+- PROCESSO 
+        É um programa em execução, cada processo possue uma porção de memória, cada porção separada por segmentos, esses
+        são:
+    
+        Text: contém o código do programa e suas constantes. Esse segmento é alocado durante a criação do processo 
+        ("exec") e permanece do mesmo tamanho durante toda a vida do processo.
+
+        Data: este segmento é a memória de trabalho do processo, aonde ficam alocadas as variáveis globais e estáticas.
+        Tem tamanho fixo ao longo da execução do processo.
+
+        Stack: Contém a pilha de execução, onde são armazenados os parâmetros, endereços de retorno e variáveis locais 
+        de funções. Pode variar de tamanho durante a execução do processo.
+            
+        Heap: contém blocos de memória alocadas dinamicamente, a pedido do processo, durante sua execução. Varia de 
+        tamanho durante a vida do processo.
+
+    OBS.:
+        Comando é um size executável. Lista os tamanhos de seção e tamanhos totais dos arquivos binários.
+
+- TIPOS DE ALOCAÇÃO 
+        A linguagem de programação "C" suporta apenas 3 tipos de alocação:
+            Alocação estática: ocorre quando são declaradas variáveis globais ou estáticas, geralmente alocadas em "Data"
+
+            Alocação automática: ocorre quando são declaradas variáveis locais e parâmetros de funções. O espaço para aloca-
+            ção dessas variáveis é reservado quando a função é invocada, e liberado quando a função termina. Geralmente é 
+            usada a pilha (stack)
+                    
+            Alocação dinâmica: quando o processo requisita explicitamente um bloco de memória para armazenar dados. O
+            controle das áreas alocadas dinamicamente é manual, ou semi-automático: O programador é responsável por
+            liberar as áreas alocadas dinamicamente. A alocação dinâmica geralmente se usa a área de heap.
