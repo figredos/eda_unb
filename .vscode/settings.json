@@ -1,0 +1,24 @@
+{
+    "C_Cpp.default.intelliSenseMode": "windows-gcc-x64",
+    "C_Cpp.default.includePath": [
+        "C:\\MinGW\\bin\\gcc"
+    ],
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc",
+    "workbench.iconTheme": "material-icon-theme",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    },
+    "cmake.configureOnOpen": false,
+    "lldb.suppressUpdateNotifications": true,
+    "editor.rulers": [120, 120, 140],
+    "explorer.compactFolders": false,
+}
