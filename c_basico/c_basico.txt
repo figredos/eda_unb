@@ -1,0 +1,5 @@
+C BÁSICO
+
+- int main(void)
+        Quando uma função de qualquer tipo tem em sua chamada inicial, nos parênteses, "void" significa que aquela 
+        função não recebe argumentos.
