@@ -1,0 +1,42 @@
+MEMÓRIA
+
+
+- O QUE É
+        Memória é um conjunto de componentes eletrônicos capazes de conservar estados. Por convenção, 1 é alta tensão e 
+        0 baixa tensão. Computadores são a combinação de sistemas binários (dados) associados a álgebra booleana (lógica) 
+        e circuitos de comutação de estados, onde o componente de armazenamento de dados é chamado de memória.
+
+- BITS
+        Nada mais são do que dados binários, podendo assumir apenas valores de 0 ou 1. Seu nome vem da abreviação do 
+        termo "binary digit". É o menor tamanho de dado em um sistema computacional e tem sua sigla como 'b', minúsculo
+
+- BYTES
+        São conjuntos de 8 bits de dados. Como bits tem 2^1 possibilidades de valores (0 ou 1, 2 valores), e bytes 
+        possuem 8 bits, possibilita a essas unidades conterem 2^8 combinações de valores, sendo assim, são as unidades 
+        de valores responsáveis por representar caractéres únicos, como letras e números. Contém valores númericos 
+        apenas, mas com uso da tabela ASCII, é possível traduzir valores númericos em letras. São representados pela 
+        sigla "B" maíusculo
+
+        Bytes binários: são aqueles que contém uma potência de 2 como possibilidades de valores, assim, um kilobyte tem 
+        1024 bytes. É definido pelo IEC 80000-13:2008.
+
+        Bytes decimais: são aqueles que contém uma potência de 10 como possibilidadesde valores, assim, um kilobyte tem
+        1000 bytes. É definido pelo SI.
+
+        Ambos os tipos de bytes possuem 8 bits, sendo sua principal diferença na potência que é usada para definir seus 
+        múltiplos. 
+
+
+- ENDEREÇO FÍSICO X ENDEREÇO VIRTUAL
+        Endereço Virtual (Lógico): é gerado pela CPU durante a execução de um programa. É usado como referência para 
+        acessar o local da memória física pela CPU. O termo Espaço de Endereço Lógico é usado para o conjunto de todos 
+        os endereços lógicos gerados pela perspectiva de um programa. O dispositivo de hardware denominado Memory-Mana-
+        gement Unit é usado para mapear o endereço lógico para seu endereço físico correspondente. 
+
+        Endereço Físico: identifica uma localização física dos dados necessários em uma memória. O usuário nunca lida 
+        diretamente com o endereço físico, mas pode acessá-lo por meio de seu endereço lógico correspondente. O programa
+        do usuário gera o endereço lógico e pensa que o programa está rodando neste endereço lógico, mas o programa 
+        precisa de memória física para sua execução, portanto, o endereço virtual deve ser mapeado para o endereço físico
+        pela MMU antes de serem usados. O termo Espaço de endereço físico é usado para todos os endereços físicos corre-
+        spondentes aos endereços lógicos em um espaço de endereço lógico.
+
