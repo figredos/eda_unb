@@ -1,0 +1,55 @@
+PONTEIROS
+
+
+- O QUE SÃO
+        São variáveis capazes de armazenar e manipular endereços de memória, ou seja, são o endereço direto de uma vari-
+        ável na memória. Como qualquer outra variável, um ponteiro deve ser declarado, isso é feito pelo uso de um '*'
+        antes do nome da variável. Ponteiros possuem tamanho fixo, com seu valor dependendo da arquitetura do OS. Pode 
+        ser NULL, valor 0, definido na interface stdlib. Além disso, quando queremos que um ponteiro possua o valor do 
+        endereço de uma variável qualquer, usamos '&':
+                int numero;
+                int *ponteiro;
+
+                ponteiro = &numero;     //Aqui o ponteiro tem o valor da posição da variável 'numero' na memória.
+
+        Para imprimir ponteiros, usamos o especificador de formatação '%p'
+
+- PONTEIROS DE PONTEIROS                
+        São assim como ponteiros, usados para armazenar e manipular endereços de memória, sendo a grande diferença, seu 
+        uso voltado para ponteiros. Para criar um ponteiro de ponteiro, ao invés de '*', usamos '**' antes do nome do 
+        ponteiro.
+
+- VETORES X PONTEIROS   
+        Vetores (arrays) são uma estrutura de dados em C. Quando declaramos um vetor em python, o que estamos fazendo 
+        efetivamente, é apontando para o endereço de memória da variável na primeira posição do array, mudando a posição
+        ao adicionar o número correspondente à posição do dado no array.
+
+        EX.: int array[2] = {3, 4};
+             int *ponteiro;
+
+             ponteiro = array;
+
+             printf("%d\n", *(ponteiro + 1))    // Retornará o número 4 
+
+        O que acaba realmente sendo feito, é a soma de valores ao valor na memória gravado no ponteiro. 
+
+- MATRIZ (multidimensional array) X PONTEIROS
+        Uma matriz em C, nada mais é do que um vetor (array) multidimensional, ou seja, matrizes se tratam de uma combi-
+        nação de uma série de vetores. Assim como vetores podem ser tratados com ponteiros. Ao atribuirmos um ponteiro a
+        uma matriz, o ponteiro consegue acessar todos os valores de todas as dimensões da matriz, simplesmente somando 
+        valores até o último valor presente da matriz.
+
+- STRUCT X PONTEIROS    
+        Structs são estuturas de dados que contém uma série de valores. Diferentemente de classes, structs não podem 
+        conter funções dentro de seu escopo (métodos). Para atribuir um ponteiro ao struct, é necessário usar seu local 
+        na memória, diferentemente de arrays. Para manipular algum valor dentro do struct usamos '->'.
+
+- FUNÇÕES X PONTEIROS
+        Assim como outras estruturas de C, podemos usar ponteiros em funções. Ponteiros de função não alocam memória, ou
+        seja, quando usados, apontam para o início do código executável. Diferentemente de outros ponteiros, os de fun-
+        ção, são declarados usando parênteses junto ao nome, e em seguida, são usados para descrever o tipo de dado que
+        será recebido por determinada função.
+        
+        EX.:        void (*ponteiro_de_funcao)(int);
+
+        O tipo do ponteiro é dado a partir da função.
