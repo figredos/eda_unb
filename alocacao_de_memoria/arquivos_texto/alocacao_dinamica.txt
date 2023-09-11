@@ -1,0 +1,38 @@
+ALOCAÇÃO DINÂMICA
+
+
+- O QUE É
+        Na alocação dinâmica, o programa solicita explicitamente áreas de memória ao sistema operacional, as utiliza e 
+        depois as libera quando não forem mais necessárias, ou quando o programa encerrar. A memória é alocada durante a
+        execução do programa, possibilitando também, alocar tamanhos maiores do que o permitido pela stack. Essa aloca-
+        ção é feita no segmento heap de cada processo. A alocação dinâmica possibilita a maior organização dos dados, 
+        que vão diminuindo/aumentando com novas entradas. No C, a alocação dinâmica não existe nativamente, a biblioteca
+        'stdlib.h' é responsável pela implementação dessa alocação na linguagem.
+
+- OPERADOR SIZEOF
+        É uma ferramenta do C que mostra o tamanho em bytes de determinado dado. Recebe dois parâmetros, primeiramente
+        recebe o tipo do dado, em seguida o nome da variável. É muito usada para "informar" funções de alocação dinâmica
+        o quanto de memória a ser usado, dado que virá conforme a variável e seu tipo.
+
+- FUNÇÕES MALLOC
+        Alocam uma quantidade de bytes, e retornam um ponteiro da memória alocada. A memória não é inicializada, retorna
+        NULL em caso de erro, sendo também, uma estratégia otimista, visto que, não é garantida a disponibilidade da me-
+        mória. Se a quantidade requerida for zero, retorna um valor que pode ser passado para a função que libera a me-
+        mória. A função malloc recebe como argumento o tamanho em bytes para alocação de memória.
+
+- FUNÇÕES FREE
+        São responsáveis por liberar o espaço previamente alocado dinamicamente, apontado por um ponteiro. A função não 
+        retorna valor, e libera uma porção para novas alocações. Chamadas repetidas para o mesmo ponteiro causam erros 
+        inesperados.
+
+- FUNÇÕES CALLOC
+        Alocam a memória para um array de A elementos de tamanho N bytes (calloc(A, N)), retornando um ponteiro da me-
+        mória alocada (NULL caso erro). Caso a memória necessária seja 0, retorna um valor que pode ser passado para a 
+        função 'FREE'.
+
+- FUNÇÕES REALLOC
+        Altera o tamanho do bloco de memória apontado por um ponteiro, o conteúdo anterior não é afetado. Caso o tamanho
+        seja maior, a memória adicionada não é inicializada, se o ponteiro for NULL, é alocado como uma nova porção de 
+        memória (malloc). Retorna um ponteiro para a nova área alocada (pode ser a mesma ou maior que a original). Reto-
+        rna Null em caso de erro (bloco original não é afetado, ficando inalterado), se o ponteiro não for NULL, e for 
+        requisitado 0 bytes, o espaço apontado é liberado (FREE).
