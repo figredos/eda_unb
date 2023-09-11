@@ -21,4 +21,7 @@
     "lldb.suppressUpdateNotifications": true,
     "editor.rulers": [120, 120, 140],
     "explorer.compactFolders": false,
+    "files.associations": {
+        "stdlib.h": "c"
+    },
 }
