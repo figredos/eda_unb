@@ -18,10 +18,11 @@
         "editor.wordBasedSuggestions": false
     },
     "cmake.configureOnOpen": false,
-    "lldb.suppressUpdateNotifications": true,
     "editor.rulers": [120, 120, 140],
     "explorer.compactFolders": false,
+    "cSpell.language": "en,pt,pt_BR",
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "string.h": "c"
     },
 }
