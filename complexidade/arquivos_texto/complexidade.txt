@@ -1,0 +1,92 @@
+COMPLEXIDADE
+
+
+- EFICÁCIA X EFICIÊNCIA
+    Um código eficaz, é aquele que simplesmente realiza uma tarefa, independente da qualidade da forma com a qual conse-
+    -guiu esse resultado.
+
+    Um código eficiente, é aquele que realiza a tarefa de uma forma adequada e com qualidade.
+
+    Algoritmos recursivos, apesar de facilitar tarefas, nem sempre são a forma mais eficiente de fazê-lo.  Um problema 
+    que surge a partir dessa análise, é a dificuldade apresentada quando se pensa em como calcular a eficiência de um 
+    algoritmo. A forma mais intuitiva de chegar em uma conclusão é a partir do tempo demorado para execução de determi-
+    -nado código. Esse raciocínio por si só gera um problema, vez que essa medida é dependente de fatores como a lingua-
+    -gem, hardware e/ou processos em execução. Portanto, é necessária uma medida independente da máquina.
+
+    A conclusão é que uma das formas é contar quantas instruções foram executadas, analisando somente as operações rele-
+    -vantes, observando a tendência do comportamento a medida que a entrada cresce. Fazendo o cálcuo aproximado dos cus-
+    -tos das operações, assim definindo a COMPLEXIDADE dos algoritmos.
+
+        -> Complexidade de um algoritmo particular
+            Busca-se o custo de um algoritmo para resolver um problema específico. Podemos observar quantas repetições 
+            cada trecho executa e quanta memória é gasta.
+        
+        -> Complexidade de uma classe de algoritmos
+            Busca-se o custo de um algoritmo para resolver um problema particular, analisa-se uma família de algoritmos 
+            que resolvem um problema específico
+
+            Ex.: nos algoritmos de ordenação, qual o número mínimo possível de comparações para ordenar 'n' números.
+
+- FUNÇÃO DE CUSTO f(n)
+    -> Analisamos
+        Conta-se as operações mais relevantes considerando, também, as instâncias dos problemas.
+    
+    -> Tamanho da instância do problema 'n'
+        Problemas em ordenação de vetores: tamanho do vetor;
+        Problemas de pesquisa em memória: número de registros;
+        Busca em texto: número de caracteres ou padrão de busca;
+        Assim por diante....
+    
+    -> Cenários
+        Melhor caso: menor tempo de execução;
+        Caso médio: média dos tempos de execução;
+        Pior caso: maior tempo de execução;
+
+- TIPOS DE COMPLEXIDADE
+    -> Complexidade linear f(n) = n:
+        Realiza-se um pequeno trabalho sobre cada elemento da entrada. Possui n entradas e n saídas.
+
+        Anel ou laço:
+            (Tempo dos comandos internos + avaliação da condição) x número de iterações.
+
+    -> Complexidade quadrática f(n) = n^2:
+        Caracterizam-se pelo processamento dos dados em pares, muitas vezes com vários aninhamentos. Se 'n' dobra, o 
+        tempo quadruplica. São algoritmos úteis para problemas pequenos
+
+    -> Complexidade cúbica f(n) = n^3:
+        Eficientes apenas para pequenos problemas, assim como a complexidade quadrática, o crescimento do tempo gasto 
+        por algoritmo é exponencial.
+
+    -> Complexidade exponencial f(n) = 2^n:
+        Resultantes de problemas resolvidos por força bruta (verificar todas as possibilidades). Quando n é 20, o tempo 
+        é cerca de 1 milhão.
+    
+    -> Complexidade fatorial f(n) = n!
+        Ainda mais demorado que a exponencial.
+
+    -> Complexidade logarítmica f(n) = log n 
+        É a função inversa da exponencial. É um pouco mais lenta a medida que 'n' cresce. Tempo típico de algoritmos que 
+        divide o problema em problemas menores. Não importa a base de log, pois a grandeza do resultado não tem altera-
+        -ções significativas.
+
+    -> Complexidade "linearítmica" f(n) = nlog n:
+        Caracterizam-se por resolver um problema quebrando em problemas menores, resolvendo cada um deles independente-
+        -mente e depois juntando as soluções, localmente resolvidos, gerando uma nova solução. Algoritmos de divisão e 
+        conquista.
+
+- NOTAÇÕES
+    -> Análise Assintótica:
+        É uma medição formal (matematicamente consistente) de se calcular aproximadamente a eficiência de algoritmos. 
+        Descreve o crescimento de funções, sendo a ideia achar uma função g(n) que represente algum limite de f(n). Como 
+        podemos representar esse comportamento assintótico? 
+    
+    -> Notação O (big O):
+        Para representar a relação assintótica, surgiram diversas notações, sendo 'O' a mais utilizada. A relação assin-
+        -tótica entre duas funções distintas f(n) e g(n) é dada primeiramente através da comparação da linha de cresci-
+        -mento f(n) e g(n), para poder concluir que f(n) = O(g(n)) (informalmente, f(n) cresce no máximo tão rapidamente
+        quanto g(n)). g(n) é o limite superior para a taxa de crescimento de f(n), assim, diz-se que g(n) domina assin-
+        -tóticamente f(n).
+
+        Dois algoritmos tem a mesma complexidade independente do tempo de execução de cada um. Ou seja, caso um algori-
+        -tmo f(n) seja igual a 3g(n), significando que um demora 3 vezes mais que o outro, eles tem a mesma complexidade
+        devido à forma com a qual sua curva cresce.
