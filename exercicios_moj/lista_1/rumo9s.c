@@ -2,27 +2,27 @@
 #include <stdlib.h>
 #include <string.h>
 
-void strrev(char *str)
-{
-    // if the string is empty
-    if (!str)
-    {
-        return;
-    }
-    // pointer to start and end at the string
-    int i = 0;
-    int j = strlen(str) - 1;
+// void strrev(char *str)
+// {
+//     // if the string is empty
+//     if (!str)
+//     {
+//         return;
+//     }
+//     // pointer to start and end at the string
+//     int i = 0;
+//     int j = strlen(str) - 1;
 
-    // reversing string
-    while (i < j)
-    {
-        char c = str[i];
-        str[i] = str[j];
-        str[j] = c;
-        i++;
-        j--;
-    }
-}
+//     // reversing string
+//     while (i < j)
+//     {
+//         char c = str[i];
+//         str[i] = str[j];
+//         str[j] = c;
+//         i++;
+//         j--;
+//     }
+// }
 
 void rumo_9(char numero[], int *multiplo, int *profundidade)
 {
@@ -42,14 +42,14 @@ void rumo_9(char numero[], int *multiplo, int *profundidade)
             soma = (soma - (soma % 10)) / 10;
         }
 
-        strrev(soma_final);
+        // strrev(soma_final);
 
         (*profundidade)++;
 
         rumo_9(soma_final, multiplo, profundidade);
     }
     else
-    {   
+    {
         if ((soma % 9) == 0)
             *multiplo = 1;
     }
@@ -70,10 +70,12 @@ int main()
 
             rumo_9(numero, &multiplo, &profundidade);
 
-            printf("%s %d %d\n", numero_novo, multiplo, profundidade);
+            if (multiplo == 1)
+                printf("%s is a multiple of 9 and has 9-degree %d\n", numero_novo, profundidade);
+            else
+                printf("%s is not a multiple of 9\n", numero_novo);
 
             multiplo = 0;
-
             profundidade = 1;
         }
 
