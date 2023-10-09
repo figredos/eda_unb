@@ -14,34 +14,17 @@ void string_contrario(char *string, char *string_nova, int indice, int indice_re
     }
 }
 
-// int main()
-// {
-//     char *string = malloc(500 * sizeof(char));
-
-//     scanf("%s", string);
-
-//     char *string_nova = malloc(strlen(string) - 1 * sizeof(char));
-
-//     string_contrario(string, string_nova, 0, strlen(string) - 1);
-
-//     printf("%s\n", string_nova);
-
-//     return 0;
-// }
-
 int main()
 {
-    char *string = "amor";
+    char *string = malloc(500 * sizeof(char));
 
-    // scanf("%s", string);
+    scanf("%s", string);
 
-    char string_nova[(strlen(string)) + 1];
+    char *string_nova = malloc(strlen(string) - 1 * sizeof(char));
 
-    printf("%d, %d", strlen(string), strlen(string_nova));
+    string_contrario(string, string_nova, 0, strlen(string) - 1);
 
-    // string_contrario(string, string_nova, 0, strlen(string) - 1);
-
-    // printf("%s\n", string_nova);
+    printf("%s\n", string_nova);
 
     return 0;
 }
