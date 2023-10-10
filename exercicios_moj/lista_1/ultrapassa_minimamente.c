@@ -1,47 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void ultrapassa_minimamente(int *numeros, int limite, int *indice, int tamanho)
+// entrada: 33 51 23 94 66 28 11 73 19 8 31 0
+// saida: 19 28 94 23
+
+void ultrapassa_minimamente(int *numeros, int limite, int indice, int tamanho)
 {
-    if ((*indice) < tamanho)
+    if ((indice) < tamanho)
     {
-        int soma = 0;
+        int soma = numeros[indice];
 
-        do
+        if (soma > limite)
         {
-            if (numeros[*indice] != 0)
-            {
-                soma += numeros[*indice];
-                (*indice)++;
-            }
-        } while (soma <= limite);
+            indice++;
+            soma = 0;
+        }
 
-        (*indice)--;
+        while (soma <= limite)
+        {
+            if (indice < tamanho)
+            {
+                (indice)++;
+                soma += numeros[indice];
+            }
+        }
 
         ultrapassa_minimamente(numeros, limite, indice, tamanho);
 
-        printf("%d\n", numeros[*indice]);
+        if ((indice) < tamanho)
+            printf("%d\n", numeros[indice]);
     }
 }
-
-// void ultrapassa_minimamente(int *numeros, int limite, int indice, int tamanho)
-// {
-
-//     if (indice < tamanho)
-//     {
-//         int soma = 0;
-
-//         for (int i = 0; soma <= limite; i++)
-//         {
-//             soma += numeros[indice];
-//             indice++;
-//         }
-
-//         ultrapassa_minimamente(numeros, limite, indice - 1, tamanho);
-
-//         printf("%d\n", numeros[indice - 1]);
-//     }
-// }
 
 // int main()
 // {
@@ -65,7 +54,7 @@ int main()
     int indice = 0;
 
     // printf("%d", sizeof(numeros)/sizeof(numeros[0]));
-    ultrapassa_minimamente(numeros, limite, &indice, tamanho);
+    ultrapassa_minimamente(numeros, limite, indice, tamanho);
 
     return 0;
 }
