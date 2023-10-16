@@ -50,3 +50,8 @@ C BÁSICO
         tomatizar tarefas, simplificar processos complexos, e aumentar produtividade. Contudo, macros podem gerar riscos
         de segurança, possuem funcionalidade limitada, problemas de compatibilidade, requerem manutenção. Esses riscos 
         se aumentam quando se é criada uma dependência desses elementos.
+
+- TYPEDEF
+        É uma forma de poupar tempo na definição de uma variável. Ao usarmos o keyword "typedef", seguido pelo tipo do 
+        dado desejado e um nome desejado, criamos um "apelido" para aquele tipo de dado. Com isso, o tempo gasto para 
+        definir dados pode diminuir.
