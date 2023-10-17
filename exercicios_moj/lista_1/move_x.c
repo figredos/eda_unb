@@ -1,5 +1,5 @@
-// Incompleto 90% de acerto
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 void move_x(char* string, int indice, int contador)
@@ -8,10 +8,10 @@ void move_x(char* string, int indice, int contador)
 
     if (indice < strlen(string))
     {
-        if (string[indice] == "\0")
+        if (string[indice] == 0)
             return;
 
-        else if (string[indice] != 'x')
+        else if (string[indice] != 120)
         {
             temp = string[contador];
             string[contador] = string[indice];
@@ -26,7 +26,7 @@ void move_x(char* string, int indice, int contador)
 
 int main()
 {
-    char str[100];
+    char *str = malloc(sizeof(char) * 100);
 
     scanf("%s", str);
 
