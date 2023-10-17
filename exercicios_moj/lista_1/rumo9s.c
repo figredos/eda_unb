@@ -42,24 +42,24 @@ int main()
     {
         fgets(numero, 1000, stdin);
 
-        numero[strlen(numero) - 1] = '\0';
+        numero[strlen(numero) - 1] = 0;
 
-        if (numero[0] != '0')
+        if (numero[0] != 0)
         {
             char *numero_novo = numero;
 
             rumo_9(numero, &multiplo, &profundidade);
 
             if (multiplo == 1)
-                printf("%s is a multiple of 9 and has 9-degree %d\n", numero_novo, profundidade);
+                printf("%s is a multiple of 9 and has 9-degree %d. \n", numero_novo, profundidade);
             else
-                printf("%s is not a multiple of 9\n", numero_novo);
+                printf("%s is not a multiple of 9. \n", numero_novo);
 
             multiplo = 0;
             profundidade = 1;
         }
 
-    } while (numero[0] != '0');
+    } while (numero[0] != 0);
 
     return 0;
 }
