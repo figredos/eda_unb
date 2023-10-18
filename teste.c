@@ -35,6 +35,46 @@ celula *cria_no(int valor)
     return novo;
 }
 
+celula *cria_lista_n_nos(int numero_nos, int *valores)
+{
+    celula *lista = cria_lista();
+
+    for (int i = 0; i < numero_nos; i++)
+    {
+        celula *no = cria_no(valores[i]);
+        insere_final(lista, no);
+    }
+    
+
+    return lista;
+}
+
+void insere_inicio(celula *le, int x)
+{
+    celula *novo = malloc(sizeof(celula));
+    novo->info = x;
+    novo->prox = le->prox;
+
+    le->prox = novo;
+}
+
+void insere_antes(celula *le, int x, int y)
+{
+    celula *nova = malloc(sizeof(celula));
+    nova->info = x;
+
+    celula *anterior = le, *atual = le->prox;
+
+    while (atual != NULL && atual->info != y)
+    {
+        anterior = atual;
+        atual = anterior->prox;
+    }
+    
+    nova->prox = atual;
+    anterior->prox = nova;
+}
+
 void insere_final(celula *lista_1, celula *lista_2)
 {
     celula *temp = lista_1;
@@ -107,96 +147,170 @@ void troca_posicao(celula *lista, int posicao_1, int posicao_2)
 
 void divide_lista(celula *l, celula *l1, celula *l2)
 {
-    celula *impar = l1;
-    celula *par = l2;
+    celula *impar_ant = l1, *impar = l1->prox;
+    celula *par_ant = l2, *par = l2->prox;
 
     while (l != NULL)
     {
         if (l->info % 2)
         {
-            celula *salva = l->prox, *impar_prox = impar->prox;
-            impar->prox = l;
-            impar = impar->prox;
-            impar->prox = impar_prox;
+            celula *salva = l->prox;
+            impar_ant = l;
+            impar = impar_ant->prox;
+            impar_ant = impar;
+            impar = NULL;
             l = salva;
         }
         else
         {  
-            celula *salva = l->prox, *par_prox = par->prox;
-            par->prox = l;
-            par = par->prox ; 
-            par->prox = par_prox;
+            celula *salva = l->prox;
+            par_ant = l;
+            par = par_ant->prox;
+            par_ant = par;
+            par = NULL;
             l = salva;
         }
     }
 
 }
-void imprime(celula *lista)
-{
-    celula *temp = lista;
 
-    while (temp != NULL)
+void mescla_listas (celula *l1, celula *l2, celula *l3)
+{
+    celula *atual_l1 = l1->prox;
+    celula *atual_l2 = l2->prox;
+    celula *atual_l3= l3;
+
+    while (atual_l1 != NULL && atual_l2 != NULL)
     {
-        // if (temp->info != 0)
-        printf("%d -> ", temp->info);
-        temp = temp->prox;
+        if (atual_l1->info < atual_l2->info)
+        {
+            atual_l3->prox = atual_l1;
+            atual_l1 = atual_l1->prox;
+        }
+        else
+        {
+            atual_l3->prox = atual_l2;
+            atual_l2 = atual_l2->prox;
+        }
+        atual_l3 = atual_l3->prox;
     }
 
-    printf("NULL");
+    while (atual_l1 != NULL)
+    {
+        atual_l3->prox = atual_l1;
+        atual_l1 = atual_l1->prox;
+        atual_l3 = atual_l3->prox;
+    }
+
+    while (atual_l2 != NULL)
+    {
+        atual_l3->prox = atual_l2;
+        atual_l2 = atual_l2->prox;
+        atual_l3 = atual_l3->prox;
+    }
+
+    atual_l3->prox = NULL;
+
+    l1->prox = NULL;
+    l2->prox = NULL;
+}
+// void imprime(celula *lista)
+// {
+//     celula *temp = lista;
+
+//     while (temp != NULL)
+//     {
+//         // if (temp->info != 0)
+//         printf("%d -> ", temp->info);
+//         temp = temp->prox;
+//     }
+
+//     printf("NULL");
+// }
+
+// void imprime(celula *le)
+// {
+//     celula *temp;
+
+//     if (le != NULL)
+//         temp = le->prox;
+//     else
+//         temp = le;
+
+//     while (temp != NULL)
+//     {
+//         printf("%d -> ", temp->info);
+//         temp = temp->prox;
+//     }
+    
+//     printf("NULL");
+// }
+
+// void imprime_rec(celula *le)
+// {
+//     if (le->prox != NULL)
+//     {
+//         printf("%d -> ", (le->prox)->info);
+//         imprime_rec(le->prox);
+//     }
+//     else
+//         printf("NULL");
+// }
+
+void imprime(celula *le) {
+    celula *atual = le->prox;
+
+    while (atual != NULL) {
+        printf("%d", atual->info);
+
+        if (atual->prox != NULL) {
+            printf(" -> ");
+        } else {
+            printf(" -> NULL");
+        }
+
+        atual = atual->prox;
+    }
+}
+
+// Função para imprimir a lista de forma recursiva
+void imprime_rec(celula *le) {
+    if (le->prox == NULL) {
+        // printf("NULL");
+        return;
+    }
+
+    printf("%d", le->prox->info);
+
+    if (le->prox->prox != NULL) {
+        printf(" -> ");
+    } else {
+        printf(" -> NULL");
+    }
+
+    imprime_rec(le->prox);
 }
 
 int main()
 {
-    int numero;
-    celula *cabeca = cria_lista();
-    celula *no_1 = cria_no(1);
-    celula *no_2 = cria_no(2);
+    int valores_1[] = {1, 7, 9, 10};
+    int valores_2[] = {2, 3, 8};
+    int valores[] = {0, 0, 0, 0, 0, 0, 0};
 
-    insere_final(cabeca, no_1);
-    insere_final(cabeca, no_2);
+    celula *lista_1 = cria_lista_n_nos(4, valores_1);
+    celula *lista_2 = cria_lista_n_nos(3, valores_2);
+    celula *lista_3 = cria_lista_n_nos(7, valores);
 
-    celula *par = cria_lista();
-    celula *par_1 = cria_no(0);
-
-    insere_final(par, par_1);
-
-    celula *impar = cria_lista();
-    celula *impar_1 = cria_no(0);
-
-    insere_final(impar, impar_1);
-
-    celula *temp = cabeca;
-
-    imprime(cabeca);
+    imprime(lista_1);
     printf("\n");
 
-    divide_lista(cabeca, impar, par);
-
-    imprime(par);
+    imprime(lista_2);
     printf("\n");
 
-    imprime(impar);
-    printf("\n");
+    mescla_listas(lista_1, lista_2, lista_3);
 
-    imprime(cabeca);
+    imprime(lista_3);
+    printf("\n");
 
     return 0;
 }
-
-/*celula *busca(celula *le, int x)
-{
-    celula *temp = le;
-    while (temp != NULL && temp->dado !=x)            
-        temp = temp->prox;
-    return temp;
-}
-
-
-celula *busca_rec(celula *le, int x)
-{
-    if (le == NULL)
-        return NULL;
-    if (le->dado == x)
-        return le;
-    return busca_rec(le->prox, x);
-}*/
