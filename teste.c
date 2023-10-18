@@ -257,6 +257,46 @@ void mescla_listas (celula *l1, celula *l2, celula *l3)
 //         printf("NULL");
 // }
 
+int remove_depois(celula *p)
+{
+    if (p == NULL || p->prox == NULL)
+        return 0;
+
+    celula *temp = p->prox;
+    p->prox = temp->prox;
+    free(temp);
+
+    return 1;
+}
+
+void remove_elemento(celula *le, int x)
+{
+    celula *ant = le, *atual = le->prox;
+    
+    while (atual != NULL && atual->info != x)
+    {
+        ant = atual;
+        atual = atual->prox;
+    }
+
+    if (atual != NULL)
+        ant->prox = atual->prox;
+}
+
+void remove_todos_elementos(celula *le, int x)
+{
+    celula *ant = le, *atual = le->prox;
+    
+    while (atual != NULL)
+    {
+        if (atual->info == x)
+            ant->prox = atual->prox;
+        else
+            ant = atual;
+        atual = atual->prox;
+    }
+}
+
 void imprime(celula *le) {
     celula *atual = le->prox;
 
@@ -293,24 +333,24 @@ void imprime_rec(celula *le) {
 
 int main()
 {
-    int valores_1[] = {1, 7, 9, 10};
+    int valores_1[] = {1, 2, 3, 4, 5};
     int valores_2[] = {2, 3, 8};
     int valores[] = {0, 0, 0, 0, 0, 0, 0};
 
-    celula *lista_1 = cria_lista_n_nos(4, valores_1);
+    celula *lista_1 = cria_lista_n_nos(5, valores_1);
     celula *lista_2 = cria_lista_n_nos(3, valores_2);
     celula *lista_3 = cria_lista_n_nos(7, valores);
 
     imprime(lista_1);
     printf("\n");
 
-    imprime(lista_2);
+    remove_depois(lista_1);
+
+    imprime(lista_1);
     printf("\n");
 
-    mescla_listas(lista_1, lista_2, lista_3);
-
-    imprime(lista_3);
-    printf("\n");
+    // imprime(lista_3);
+    // printf("\n");
 
     return 0;
 }
