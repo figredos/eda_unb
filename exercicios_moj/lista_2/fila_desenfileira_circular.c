@@ -7,12 +7,21 @@ typedef struct fila
     int N, p, u;
 } fila;
 
+// int desenfileira(fila *f, int *y)
+// {
+//     if (f->p == f->u)
+//         return 0;
+
+//     *y = f->dados[f->p];
+//     f->p = (f->p + 1) % f->N;
+//     return 1;
+// }
+
 int desenfileira(fila *f, int *y)
 {
-    if (f == NULL || f->dados == NULL || f->p == f->u)
-        return 0;
-        
+    if (f->p == f->u)
+        return 1;
     *y = f->dados[f->p];
     f->p = (f->p + 1) % f->N;
-    return 1;
+    return 0;
 }
