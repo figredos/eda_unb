@@ -1,4 +1,3 @@
-// Incompleto, 91% de acerto.
 // Importando pacotes
 #include <stdio.h>
 #include <stdlib.h>
