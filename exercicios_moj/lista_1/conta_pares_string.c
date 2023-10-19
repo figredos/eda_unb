@@ -22,14 +22,14 @@ void conta_pares_string(char *string, int indice, int *conta_pares)
 
 int main()
 {
-    char *string =  malloc(200 * sizeof(char)); //Cria string alocando memória suficiente
+    char *string =  malloc(201 * sizeof(char)); //Cria string alocando memória suficiente
     int conta_pares = 0, indice = 0;    //Inicializa variáveis referente ao número de pares e ao índice
 
-    fgets(string, 200, stdin);  //Obtém input
+    fgets(string, 201, stdin);  //Obtém input
 
     conta_pares_string(string, indice, &conta_pares);   //Executa a função
 
-    printf("%d", conta_pares);  //Imprime o número de pares
+    printf("%d\n", conta_pares);  //Imprime o número de pares
 
     return 0;
 }
