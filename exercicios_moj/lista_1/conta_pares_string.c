@@ -1,35 +1,35 @@
 // Incompleto, 91% de acerto.
+// Importando pacotes
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+//Função que conta pares
 void conta_pares_string(char *string, int indice, int *conta_pares)
 {
-    if (string[indice + 1] != 0)
+    if (string[indice + 1] != 0)    //Verifica se a string acabou
     {
-        if (string[indice + 2] == string[indice])
+        if (string[indice + 2] == string[indice])   //Compara o índice atual, com dois índices a frente na string
         {
-            (*conta_pares)++;
+            (*conta_pares)++;   //Aumenta o ponteiro
 
-            conta_pares_string(string, indice + 1, conta_pares);
+            conta_pares_string(string, indice + 1, conta_pares);    //Faz recursão aumentando o índice
         }
         else
-            conta_pares_string(string, indice + 1, conta_pares);
+            conta_pares_string(string, indice + 1, conta_pares);    //Faz recursão aumentando o índice
     }
 }
 
 int main()
 {
-    char *string =  malloc(200 * sizeof(char));
-    int conta_pares = 0, indice = 0;
+    char *string =  malloc(200 * sizeof(char)); //Cria string alocando memória suficiente
+    int conta_pares = 0, indice = 0;    //Inicializa variáveis referente ao número de pares e ao índice
 
-    fgets(string, 200, stdin);
+    fgets(string, 200, stdin);  //Obtém input
 
-    string[strlen(string) - 1] = '\0';
+    conta_pares_string(string, indice, &conta_pares);   //Executa a função
 
-    conta_pares_string(string, indice, &conta_pares);
-
-    printf("%d", conta_pares);
+    printf("%d", conta_pares);  //Imprime o número de pares
 
     return 0;
 }
