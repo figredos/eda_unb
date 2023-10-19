@@ -8,12 +8,7 @@ typedef struct celula {
 
 void imprime(celula *le)
 {
-    celula *temp;
-
-    if (le != NULL)
-        temp = le->prox;
-    else
-        temp = le;
+    celula *temp = le->prox;
 
     while (temp != NULL)
     {
@@ -21,7 +16,7 @@ void imprime(celula *le)
         temp = temp->prox;
     }
     
-    printf("NULL");
+    printf("NULL\n");
 }
 
 void imprime_rec(celula *le)
@@ -32,5 +27,5 @@ void imprime_rec(celula *le)
         imprime_rec(le->prox);
     }
     else
-        printf("NULL");
+        printf("NULL\n");
 }
