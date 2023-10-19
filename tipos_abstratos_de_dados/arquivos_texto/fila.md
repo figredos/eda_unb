@@ -15,7 +15,7 @@ fila[p...u-1]
 
 O primeiro elemento da fila está na posição p, e o último na posição u-1. A fila está vazia se p==u e cheia se u==N. 
 
-![Alt text](image.png)
+![Alt text](imagens\image.png)
 
 Para tirar/remover um elemento da fila, basta fazer:
 
@@ -37,7 +37,7 @@ Na implementação vetorial simples, a fila "anda para a direita" dentro do veto
 
 A seguir, definimos duas filas, uma fila[0...N-1] e outra fila[0...u][p...N-1]
 
-![Alt text](image-1.png)
+![Alt text](imagens\image-1.png)
 
 Teremos sempre 0<= p< N e 0<= u < N, mas não podemos supor que p <= u. Assim, podemos definir que a fila está vazia se u==p, e cheia se u+1 = p, ou u+1==N e p==0 (ou seja, se (u+1)%N==p). A posição anterior a p ficará sempre desocupada para que possamos distinguir uma fila cheia de uma fila vazia. Com essas convenções, a remoção de um elemento da fila pode ser escrita como segue.
 
@@ -67,7 +67,7 @@ void coloca_na_fila(int y)
 
 ## Implementação em vetor com redimensionamento
 
-Nem sempre é possível prever a quantidade de espaço que deve ser reservada para a fila de modo a evitar transbordamentos. Se o vetor que abriga a fila foi alocado dinamicamente (usando a função malloc), é possível resolver essa dificuldade _*redimensionando*_ o vetor. Ou seja, toda vez que a fila ficar cheia, aloque um vetor maior e transfira a fila para esse novo vetor. PAra evidar redimensionamentos frequentes, convém que o novo vetor seja pelo menos duas vezes maior que o original.
+Nem sempre é possível prever a quantidade de espaço que deve ser reservada para a fila de modo a evitar transbordamentos. Se o vetor que abriga a fila foi alocado dinamicamente (usando a função malloc), é possível resolver essa dificuldade _*redimensionando*_ o vetor. Ou seja, toda vez que a fila ficar cheia, aloque um vetor maior e transfira a fila para esse novo vetor. Para evitar redimensionamentos frequentes, convém que o novo vetor seja pelo menos duas vezes maior que o original.
 
 ~~~C
 void redimensiona()
