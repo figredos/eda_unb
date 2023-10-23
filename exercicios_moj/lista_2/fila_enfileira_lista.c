@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct celula
+typedef struct 
 {
     int dado;
     struct celula *prox;
@@ -9,12 +9,12 @@ typedef struct celula
 
 celula *enfileira(celula *f, int x)
 {
-    if (f == NULL)
-        return NULL;
     celula *nova = malloc(sizeof(celula));
+    if(nova == NULL || f == NULL)
+        return NULL;
     nova->prox = f->prox;
     f->prox = nova;
-    f = nova;
     f->dado = x;
+    f = nova;
     return nova;
 }
