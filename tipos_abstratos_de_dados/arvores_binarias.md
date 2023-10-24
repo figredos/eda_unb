@@ -53,7 +53,7 @@ Uma árvore binária pode ser percorrida de muitas maneiras diferentes. Uma mane
 
 Nessa ordem. A imagem a seguir denota a ordem na qual são visitados os nós da árvore numa varredura e-r-d.
 
-![Alt text](imagens/image-3.png.png)
+![Alt text](imagens/image-3.png)
 
 No código abaixo, temos uma função recursiva que faz a varredura e-r-d de uma árvore binária:
 
