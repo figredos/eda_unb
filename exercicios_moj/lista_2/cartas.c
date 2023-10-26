@@ -1,0 +1,1 @@
+//é uma lista circular e tenho que mudar os elementos para o final, a medida que vou desemplilhando eles.
