@@ -2,7 +2,7 @@
 #include <stdlib.h>
 typedef struct
 {
-    int *v;          // Vetor que reinicioresenta a fila
+    int *v;          // Vetor que representa a fila
     int N;           // Tamanho da fila
     int inicio, fim; // Indicadores de inicio e final da fila
 } fila;
