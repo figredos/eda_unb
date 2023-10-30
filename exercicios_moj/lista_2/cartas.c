@@ -1,42 +1,89 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main() {
-    int n = 7;
-    // scanf("%d", &n);
+typedef struct celula
+{
+    int *dado;
+    int tamanho;
+    int inicio;
+    int fim;
+} celula;
 
-    int pilha[n];
-    int topo = 0; // Índice do topo da pilha
-    int descartadas[n - 1];
-    int descartadas_index = 0;
-
-    // Inicializa a pilha com os valores de 1 até n
-    for (int i = 0; i < n; i++) {
-        pilha[i] = i + 1;
+void empilha(celula *lista, int numero)
+{
+    if (lista->fim == lista->tamanho)
+    {
+        lista->tamanho *= 2;
+        lista->dado = realloc(lista->dado, sizeof(int) * lista->tamanho);
     }
 
-    // Imprime as cartas descartadas
-    printf("Cartas descartadas:");
-    while (topo < n) {
-        if (descartadas_index > 0) {
-            printf(",");
-        }
-        printf(" %d", pilha[topo]);
-        descartadas[descartadas_index] = pilha[topo];
-        descartadas_index++;
-        topo++;
+    lista->dado[lista->fim] = numero;
+    lista->fim++;
+    lista->inicio++;
+}
 
-        if (topo < n -1) {
-            // Move a próxima carta para a base da pilha
-            int carta_movida = pilha[topo];
-            for (int i = topo; i < n - 1; i++) {
-                pilha[i] = pilha[i + 1];
-            }
-            pilha[n - 1] = carta_movida;
-        }
+int desempilha(celula *lista)
+{
+    int salva = lista->dado[lista->inicio];
+
+    lista->inicio++;
+    lista->dado[lista->inicio];
+
+    return salva;
+}
+
+celula *cria_baralho(int numero)
+{
+    celula *lista = malloc(sizeof(celula));
+
+    lista->tamanho = numero;
+    lista->dado = malloc(sizeof(int) * numero);
+    lista->fim = 0;
+    lista->inicio = 0;
+
+    for (int i = 0; i < numero; i++)
+        lista->dado[i] = i + 1;
+    
+    return lista;
+}
+
+void descarta(celula *lista, int descarte[])
+{
+    for(int i = 0; i < lista->tamanho - 1; i++)
+    {
+        descarte[i] = desempilha(lista);
+        empilha(lista, lista->dado[lista->inicio]);
     }
+}
 
-    // Imprime a última carta restante
-    printf("\nCarta restante: %d\n", pilha[0]);
+void imprime(celula *lista)
+{
+    for(int i = 0; i < lista->tamanho; i++)
+        printf("%d -> ", lista->dado[i]);
+
+    printf("NULL");
+}
+
+void imprime_vetor(int *lista, int tamanho)
+{
+    for(int i = 0; i < tamanho; i++)
+        printf("%d -> ", lista[i]);
+
+    printf("NULL\n");
+}
+
+int main()
+{
+    celula *lista = cria_baralho(7);
+    int *descarte = malloc(sizeof(int) * lista->tamanho);
+
+    descarta(lista, descarte);
+
+    imprime_vetor(descarte, lista->tamanho);
+
+    imprime(lista);
 
     return 0;
 }
+
+//fazer as operações do vetor (empilhando as cartas que não são descartadas) e armazenando as cartas descartadas (desempilhando o vetor) em um segundo vetor "descarte".
