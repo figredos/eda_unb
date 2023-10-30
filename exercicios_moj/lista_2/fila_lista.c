@@ -9,21 +9,10 @@ typedef struct celula
 
 void enfileira(celula **f, int x)
 {
-    celula *nova_celula = malloc(sizeof(celula));
-    celula *temp = malloc(sizeof(celula));
-    temp = *f;
-    nova_celula->dado = x;
-
-    if(temp != NULL)
-    {
-        while (temp->prox != temp)
-            temp = temp->prox;
-
-        temp->prox = nova_celula;
-        nova_celula->prox = *f;
-    }
-    else    
-        *f = nova_celula;
+    celula *nova = malloc(sizeof(celula));
+    nova->prox = (*f)->prox;
+    (*f)->dado = x;
+    (*f)->prox = nova;
 }
 
 int desenfileira(celula *f, int *y)
