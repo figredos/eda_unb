@@ -16,7 +16,7 @@ void string_contrario(char *string, char *string_nova, int indice, int indice_re
 
 int main()
 {
-    char *string = malloc(500 * sizeof(char));
+    char *string = malloc(501 * sizeof(char));
 
     scanf("%s", string);
 
