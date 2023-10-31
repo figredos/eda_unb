@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct pilha
 {
@@ -6,21 +7,13 @@ typedef struct pilha
     int N, topo;
 } pilha;
 
-// int desempilha(pilha *p, int *y)
-// {
-//     if (p->topo == -1)
-//         return 0;
 
-//     *y = p->dados[p->topo];
-//     p->topo--;
-
-//     return 1;
-// }
-
-int desempilha (pilha *p, int *y) {
-    if (p->topo == NULL) 
+int desempilha (pilha *p, int *y)
+{
+    if (p->topo == 0) 
         return 0;
-    *y = p->dados[p->topo];
+
     p->topo--;
+    *y = p->dados[p->topo]; //O topo indica a posição livre, então eu tenho que diminuir antes de salvar em y
     return 1;
 }
