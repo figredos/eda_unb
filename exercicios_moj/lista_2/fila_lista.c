@@ -7,13 +7,15 @@ typedef struct celula
     struct celula *prox;
 } celula;
 
-void enfileira(celula **f, int x)
+void enfileira (celula **f, int x)
 {
     celula *nova = malloc(sizeof(celula));
     nova->prox = (*f)->prox;
-    (*f)->dado = x;
     (*f)->prox = nova;
+    (*f)->dado = x;
+    (*f) = nova;
 }
+
 
 int desenfileira(celula *f, int *y)
 {
