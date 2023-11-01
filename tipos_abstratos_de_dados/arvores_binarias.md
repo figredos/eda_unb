@@ -71,6 +71,10 @@ void erd(arvore r)
 }
 ~~~
 
+A imagem abaixo representa algumas das outras formas de percorrer uma árvore binária
+
+![Alt text](imagens/image-5.png)
+
 ## Altura e profundidade 
 
 ### Altura
