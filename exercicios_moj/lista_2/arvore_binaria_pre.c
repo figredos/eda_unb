@@ -6,26 +6,31 @@ typedef struct no
     struct no *esq, *dir;
 } no;
 
-void pre_ordem(no* raiz) {
+void pre_ordem(no* raiz)
+{
     if (raiz == NULL)
         return;
 
-    no* atual = raiz;
-    no* pilha[100]; // Tamanho arbitrário da pilha
-    int topo = -1;   // Inicializa o topo da pilha
+    no *atual = raiz;
+    no *pilha[100];
+    int topo = -1;
 
-    while (1) {
-        while (atual != NULL) {
-            printf("%d ", atual->dado); // Imprime o nó atual antes de empilhá-lo
+    while (1)
+    {
+        while (atual != NULL)
+        {
             pilha[++topo] = atual;
+            printf("%d ", atual->dado);
             atual = atual->esq;
         }
-
-        if (topo >= 0) {
+        
+        if (topo >= 0)
+        {
             atual = pilha[topo--];
             atual = atual->dir;
-        } else {
-            break;
         }
+        else
+            break;
     }
+    printf("\n");
 }
