@@ -1,9 +1,12 @@
+//Incluindo pacotes
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+//Função que inverte a string passada como argumento
 void string_contrario(char *string, char *string_nova, int indice, int indice_reverso)
 {
+    //Inserimos o valor do final da string antiga no inicio da string nova
     if (indice < strlen(string))
     {
         string_nova[indice] = string[indice_reverso];
