@@ -1,11 +1,15 @@
+//Incluindo pacotes
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct celula {
+//Definindo struct celula
+typedef struct celula 
+{
     int dado;
     struct celula *prox;
 } celula;
 
+//Função que imprime uma lista le
 void imprime(celula *le)
 {
     celula *temp = le->prox;
@@ -19,6 +23,7 @@ void imprime(celula *le)
     printf("NULL\n");
 }
 
+//Função que imprime uma lista recursivamente
 void imprime_rec(celula *le)
 {
     if (le->prox != NULL)
