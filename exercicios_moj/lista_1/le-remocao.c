@@ -1,12 +1,15 @@
+//Incluindo pacotes
 #include <stdio.h>
 #include <stdlib.h>
 
+//Definindo struct celula
 typedef struct celula
 {
     int dado;
     struct celula *prox;
 } celula;
 
+//Função que remove a célula seguinte à celula p
 int remove_depois(celula *p)
 {
     if (p == NULL || p->prox == NULL)
@@ -18,6 +21,7 @@ int remove_depois(celula *p)
     return 1;
 }
 
+//Função que remove um elemento com valor x da lista le
 void remove_elemento(celula *le, int x)
 {
     celula *ant = le, *atual = le->prox;
@@ -32,6 +36,7 @@ void remove_elemento(celula *le, int x)
         ant->prox = atual->prox;
 }
 
+//Função que remove todos os elementos com valor x da lista le
 void remove_todos_elementos(celula *le, int x)
 {
     celula *ant = le, *atual = le->prox;
