@@ -88,3 +88,65 @@ Ao usar a variável swap, verificamos se em algum momento foi feita alguma troca
 
 ## Insertion Sort
 
+O algoritmo do Insertion Sort consiste em inserir cada elemento na posição correta em relação aos seus antecessores. Compara todos os itens, um a um com os antecessores.
+
+~~~C
+void insertion_sort(int *v, int l, int r)
+{
+    for (int i = l + 1; i < r; i++)
+    {
+        for (int j = i; j > l && v[j] < v[j - 1]; j--)
+        {
+            int t = v[j];
+            v[j] = v[j - 1];
+            v[j - 1] = t;
+        }
+    }
+}
+~~~
+
+No pior caso do insertion sort, são feitas cerca de $\frac{N^2}{2}$ comparações e trocas. Fazendo com que não seja indicado para grandes entradas totalmente desordenadas ou invertidas. Tem desempenho similar ao bubble sort e envolve trocas apenas com os adjacentes. Sua complexidade assintótica é de $O(N^2)$, com o melhor caso sendo $O(N)$.
+
+É um algoritmo adaptativo, vez que o arquivo estar ordenado diminui a quantidade de comparações e trocas.
+
+É um algoritmo estável, pois mantém a ordem relativa dos dados.
+
+Configura também um código *in-place*, pois não usa estruturas de dados extras, mantendo o uso de memória proximo de constante
+
+### Insertion Sort X Selection Sort
+
+O algoritmo de selection sort funciona relativo a uma posição atual, onde os itens a esquerda estão ordenados e na sua posição final. Quanto ao insertion sort, os itens a esquerda estão ordenados, mas não necessariamente em sua posição final, podem ser movidos para abrir espaço para itens menores. O tempo de execução depende da ordenação inicial, sendo mais rápido quando mais ordenado (tendendo a linear), o selection sort continua quadrático independente da ordenação inicial.
+
+### Insertion Sort X Bubble Sort
+
+O posicionamento de um item não garante a ordenação dos outros elementos no bubble sort, garante que os elementos à esquerda sejam menores e os da direita maiores, mas não são necessariamente ordenados a cada passagem. Enquanto no insertion sort, o posicionamento de um item, garante a ordenação dos elementos a sua esquerda.
+
+
+## Shell sort
+
+O algoritmo do shell sort parte da ideia da ordenação parcial a cada passagem, posteriormente ordenados pelo insertion sort. Essa implementação diminui o número de movimentações e possibilita a troca de itens distantes um do outro. Separa itens a uma distância *h* , rearranjando os itens e resultando em uma sequência ordenada para a distância *h*, ou ***h-ordenada***.
+
+Quando *h = 1*, corresponde ao insertion sort. A maior dificuldade da implementação desse algoritmo, é determinar o tamanho de h. Donald Knuth (cientista da computação), recomenda algo em torno de 1/3 da entrada. Sequência multiplas de 2 não performam bem, itens em posições pares não confrontam itens em posições ímpares até o fim do processo e vice-versa.
+
+~~~C
+void shell_sort(int *v, int l, int r)
+{
+    int h = 1;
+
+    while (h < (r - l + 1)/3)
+        h = 3*h + 1;
+
+    while (h >= 1)
+        for (int i = l; i <= r; i++)
+        {
+            for (int j = i; j >= l + h && v[j] < v[j - h]; j -= h)
+            {
+                int t = v[j];
+                v[j] = v[j - 1];
+                v[j - 1] = t;
+            }
+        }
+
+        h /= 3; 
+}
+~~~
