@@ -8,7 +8,7 @@ void shell_sort(int *v, int l, int r)
         h = 3*h + 1;
 
     while (h >= 1)
-        for (int i = l + 1; i < r; i++)
+        for (int i = l + h; i <= r; i++)
         {
             for (int j = i; j >= i + h && v[j] < v[j - h]; j -= h)
             {
