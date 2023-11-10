@@ -1,72 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
+typedef int Item;
+#define less(A,B) ((A) < (B))
+#define lesseq(A,B) ((A) <= (B))
+#define exch(A,B) { Item t; t=A;A=B;B=t; }
+#define cmpexch(A,B) { if (less(B,A)) exch(A,B); }
 
-typedef struct celula
+// static void insertionsortH(Item *v,int l,int r,int h)
+// {
+//   for(int i=l+h;i<=r;i++)
+//   {
+//     int j=i; Item tmp=v[j];
+//     while(j>=l+h && less(tmp,v[j-h]))
+//     {
+//       v[j]=v[j-h];
+//       j-=h;
+//     }
+//     v[j]=tmp;
+//   }
+// }
+
+// void shellsort(Item *v,int l,int r)
+// {
+//   int h;
+//   int t=(r-l)+1;
+//   for(h=1;h<=(t-1)/9;h=3*h+1);
+//   for(;h>0;h/=3)
+//     insertionsortH(v,0,t-1,h);
+// }
+
+void shell_sort(int *v, int l, int r)
 {
-    int *dado;
-    int tamanho;
-    int inicio;
-    int fim;
-} celula;
+    int h;
 
-void empilha(celula *lista, int numero)
-{
-    if (lista->fim == lista->tamanho)
-    {
-        lista->tamanho *= 2;
-        lista->dado = realloc(lista->dado, sizeof(int) * lista->tamanho);
-    }
+    for (h = 1; h <= (r - l) / 9; h = 3 * h + 1);
 
-    lista->dado[lista->fim] = numero;
-    lista->fim++;
+    for (; h > 0; h / 3)
+        for (int i = l + h; i < r; i++)
+        {
+            for (int j = i; j > l + h && v[j] < v[j - h]; j -= h)
+            {
+                int t = v[j];
+                v[j] = v[j - h];
+                v[j - h] = t;
+            }
+        }
 }
 
-void desempilha(celula *lista)
-{
-    lista->dado[lista->inicio++];
-}
-
-celula *cria_baralho(int numero)
-{
-    celula *lista = malloc(sizeof(celula));
-
-    lista->tamanho = numero;
-    lista->dado = malloc(sizeof(int) * numero);
-    lista->fim = 0;
-    lista->inicio = 0;
-
-    for (int i = 0; i < numero; i++)
-        lista->dado[i] = i + 1;
-    
-    return lista;
-}
-
-void descarta(celula *lista)
-{
-    for(int i = 0; i < lista->tamanho - 1; i++)
-    {
-        printf("%d ", lista->dado[i]);
-        desempilha(lista);
-    }
-}
-
-void imprime(celula *lista)
-{
-    for(int i = lista->inicio; i < lista->tamanho; i++)
-        printf("%d -> ", lista->dado[i]);
-
-    printf("NULL");
-}
 
 int main()
 {
-    celula *lista = cria_baralho(7);
+    int *vetor = malloc(50001 * sizeof(int));
+    int numero;
+    int i;
 
-    desempilha(lista);
+    for (i = 0; scanf("%d", &numero) != EOF; i++)
+        vetor[i] = numero;
 
-    imprime(lista);
+    shell_sort(vetor, 0, i);
+
+    printf("%d", vetor[1]);
+ 
+    for (int j = 2; j <= i; j++)
+        printf(" %d", vetor[j]);
+
+    printf("\n");
 
     return 0;
 }
-
-//faz todas as operações em cima do vetor, transformando ele em ex: 1 3 5 6 2 6 4 
