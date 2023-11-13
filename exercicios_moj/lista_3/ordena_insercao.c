@@ -14,7 +14,22 @@
 //     }
 // }
 
+void shell_sort(int *v, int l, int r)
+{
+    int h = 1;
 
+    for (; h <= (r - l)/9; h = 3*h + 1)
+        ;
+    
+    for (; h > 0;  h /= 3)
+        for (int i = h + l; i <= (r - l); i++)
+            for (int j = i; j >= l + h && v[j] < v[j - h]; j -= h)
+            {
+                int t = v[j];
+                v[j] = v[j - h];
+                v[j - h] = t;   
+            }    
+}
 
 int main()
 {
@@ -27,9 +42,9 @@ int main()
 
     shell_sort(vetor, 0, i);
 
-    printf("%d", vetor[0]);
+    printf("%d", vetor[1]);
 
-    for (int j = 1; j < i; j++)
+    for (int j = 2; j <= i; j++)
         printf(" %d", vetor[j]);
 
     printf("\n");
