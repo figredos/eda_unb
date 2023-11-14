@@ -1,124 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void merge(int *v, int l, int m, int r)
+int menor_indice(int *v, int i, int j)
 {
-    int *aux = malloc(sizeof(int) * (r - l + 1));
-    int i = l;
-    int j = m + 1;
-    int k = 0;
+    if (i == j)
+        return i;
 
-    while (i <= m && j <= r)
-    {
-        if (v[i] <= v[j])
-            aux[k++] = v[i++];
-        else
-            aux[k++] = v[j++];
-    }
-    while (i <= m)
-        aux[k++] = v[i++];
-    while (j <= r)
-        aux[k++] = v[j++];
+    int k = menor_indice(v, i + 1, j);
 
-    k = 0;
-
-    for (i = l; i <= r; i++)
-        v[i] = aux[k++];
-
-    free(aux);
+    return (v[i] < v[k]) ? i : k;
 }
-void merge_sort(int *v, int l, int r)
+
+void selection_sort_recursivo(int *v, int n, int i)
 {
-    if (l >= r)
+    if (n == i)
         return;
-    int meio = (l + r) / 2;
-    merge_sort(v, l, meio);
-    merge_sort(v, meio + 1, r);
-    merge(v, l, meio, r);
+
+    int k = menor_indice(v, i, n - 1);
+
+    if (i != k)
+    {
+        int t = v[i];
+        v[i] = v[k];
+        v[k] = t;
+    }
+
+    selection_sort_recursivo(v, n, i + 1);
 }
-// void merge(int *v, int l, int m, int r)
-// {
-//     int *aux = malloc(sizeof(int) * (r - l + 1));
-//     int i = l;
-//     int j = m + 1;
-//     int k = 0;
 
-//     while (i <= m && j <= r)
-//     {
-//         if (v[i] <= v[j])
-//             aux[k++] = v[i++];
-//         else
-//             aux[k++] = v[j++];
-//     }
-
-//     while (i <= m)
-//         aux[k++] = v[i++];
-
-//     while (j <= r)
-//         aux[k++] = v[j++];
-
-//     k = 0;
-
-//     for (i = l; i <= r; i++)
-//         v[i] = aux[k++];
-
-//     free(aux);
-// }
-
-// void merge_sort(int *v, int l, int r)
-// {
-//     if (l >= r)
-//         return;
-
-//     int meio = (l + r) / 2;
-
-//     merge_sort(v, l, meio);
-//     merge_sort(v, meio + 1, r);
-//     merge(v, l, meio, r);
-// }
+void ordena(int *v, int n)
+{
+    selection_sort_recursivo(v, n, 0);
+}
 
 int main()
 {
-    int n;
-    int i;
+    int n = 6;
 
-    scanf("%d", &n);
+    int vetor[] = {7, 3, 2, 5, 4, 3};
 
-    int *vetor = malloc(sizeof(int) * n);
+    ordena(vetor, n);
 
-    for (i = 0; i < n; i++)
-        scanf("%d", &vetor[i]);
-
-    merge_sort(vetor, 0, i - 1);
-
-    printf("%d", vetor[0]);
-
-    for (int j = 1; j < i; j++)
+    for (int j = 0; j < n; j++)
         printf(" %d", vetor[j]);
 
     printf("\n");
 }
-
-// int main()
-// {
-//     int n = 6;
-//     int i = 5;
-
-//     // scanf("%d", &n);
-
-//     // int *vetor = malloc(sizeof(int) * n);
-
-//     // for (i = 0; i < n; i++)
-//     // ;
-
-//     int vetor[] = {7, 3, 2, 5, 4, 3};
-
-//     merge_sort(vetor, 0, i);
-
-//     printf("%d", vetor[0]);
-
-//     for (int j = 1; j <= i; j++)
-//         printf(" %d", vetor[j]);
-
-//     printf("\n");
-// }
