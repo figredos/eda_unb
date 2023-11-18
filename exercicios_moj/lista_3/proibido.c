@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+//Função busca binaria que retorna o índice do dado no vetor (caso exista) e -1 caso não
 long long busca_binaria(long long *v, long long n, long long dado)
 {
     long long l = 0, h = n;
@@ -21,6 +22,7 @@ long long busca_binaria(long long *v, long long n, long long dado)
     return -1;
 }
 
+//Funções merge e merge_sort que ordenam o vetor
 void merge(long long *v, long long l, long long m, long long r)
 {
     long long *auxiliar = malloc(sizeof(long long) * (r - l + 1));
