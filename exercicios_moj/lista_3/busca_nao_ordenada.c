@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Definindo struct que "coleta" o valor do número e seu índice inicial
 typedef struct dado
 {
     int valor, indice;
 } dados;
 
+//Função shell_sort para ordenar os dados
 void shell_sort(dados *v, int l, int r)
 {
     int h = 1;
@@ -23,6 +25,7 @@ void shell_sort(dados *v, int l, int r)
             }
 }
 
+//Função busca binária que retorna o índice do dado (se o dado estiver no vetor) ou -1
 int busca_binaria(dados *v, int n, int dado)
 {
     int l = 0;
@@ -51,18 +54,23 @@ int main()
 
     dados v[n];
 
+    //Lendo os dados do vetor
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &v[i].valor);
         v[i].indice = i;
     }
+
+    //Ordenando o vetor
     shell_sort(v, 0, n);
 
+    //Lendo os dados de busca
     while (m--)
     {
         scanf("%d", &dado);
         
         int r =  busca_binaria(v, n, dado);
+        
         if (r != -1)
             printf("%d\n", v[r].indice);
         else
