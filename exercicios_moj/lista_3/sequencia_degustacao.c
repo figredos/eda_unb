@@ -5,12 +5,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Struct dado que contém as características de cada letra
 typedef struct dado
 {
     int qtd, p;
     char c;
 } dados;
 
+//Funções merge e merge_sort que ordenam com base na quantidade de vezes que alguma letra aparece
 void merge(dados *v, int l, int m, int r)
 {
     dados *auxiliar = malloc(sizeof(dados) * (r - l));
@@ -33,6 +35,7 @@ void merge(dados *v, int l, int m, int r)
     for (i = l; i < r; i++)
         v[i] = auxiliar[i - l];
 }
+
 void merge_sort(dados *v, int l, int r)
 {
     if (l >= r - 1)
@@ -47,6 +50,7 @@ void merge_sort(dados *v, int l, int r)
 
 int main()
 {
+    //Inicializando vetor de dados e string
     dados vetor[100001];
     char string[100001];
 
@@ -57,23 +61,33 @@ int main()
     int contador = 0;
     char anterior = string[0];
     char *caractere = &string[0];
+
+    //Enquanto não chegar ao fim da string
     while (*caractere != '\0')
     {
+        //Enquanto a letra atual for igual a anteriorm aumentamos a o tamanho (quantidade) e mudamos o ponteiro para
+        //a próxima letra
         for (; *caractere == anterior; caractere++, tamanho++)
             ;
 
-        dados letra = {.qtd = tamanho, .p = posicao, .c = *(caractere - 1)};
+        //Criando um struct letra
+        dados letra;
+        letra.qtd = tamanho, letra.p = posicao, letra.c = *(caractere - 1);
 
+        //Adicionando letra ao vetor
         vetor[k++] = letra;
 
+        //Incrementando variáveis de modo a continuar a leitura
         posicao += tamanho;
         tamanho = 0;
         contador++;
         anterior = *caractere;
     }
 
+    //Ordenando o vetor
     merge_sort(vetor, 0, contador);
 
+    //Imprimindo 
     for (int j = 0; j < contador; j++)
         printf("%d %c %d\n", vetor[j].qtd, vetor[j].c, vetor[j].p);
 
