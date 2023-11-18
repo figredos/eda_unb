@@ -13,7 +13,7 @@ void shell_sort(int *v, int l, int r)
             {
                 int t = v[j];
                 v[j] = v[j - h];
-                v[j - h] = v[j];
+                v[j - h] = t;
             }
         
 }
