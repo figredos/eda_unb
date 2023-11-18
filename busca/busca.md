@@ -7,30 +7,24 @@
 A ideia é dividir o vetor no meio, procuramos o elemento da esquerda caso o elemento seja menor que o elemento central, ou procurar na direita caso seja maior. Repetimos, recursivamente, até o elemento procurado ser o elemento central (ou não, caso haja uma falha na busca).
 
 ~~~C
-#define key(A) (A.chave)
-
-typedef int Key;
-typedef struct data Item;
-struct data
+int busca_binaria(int *v, int n, int dado)
 {
-    Key chave;
-    char info[100];
-};
+    int l = 0;
+    int h = n;
 
-Item binary_search(Item *v, int I, int r, Key k)
-{
-    if(l >= r)
-        return NULL;
+    while(h > l)
+    {
+        int meio = l + (h - l) / 2;
+        
+        if(dado == v[meio])
+            return m;
+        else if (dado <= v[meio])
+            h = m;
+        else
+            l = m + 1;
+    }
 
-    int m = (l + r) / 2;
-
-    if(k == key(v[m]))
-        return v[m];
-    
-    if(k < key(v[m]))
-        return binary_search(v, l, m-1, k);
-
-    return binary_search(v, m+1, r, k);
+    return -1;    
 }
 ~~~
 
@@ -44,28 +38,6 @@ $l + (r - l) \times (1/2)$
 
 - 1/2: posição do elemento do meio
 - (k - inicio) / (fim - inicio) (proporção dos k elementos iniciais em relação ao total)
-
-$l + (r - l) \times (k - key(v[l]) / key(v[r]) - key(v[l]))$
-
-~~~C
-Item binary_search(Item *v, int I, int r, Key k)
-{
-    if(l >= r)
-        return NULL;
-
-    int m = l + (r - l) * ((k - key(v[l])) / (key(v[r]) - (key(v[l]))));
-
-    if (k == key(v[m]))
-        return v[m];
-    
-    if (k < key(v[m]))
-        return binary_search(v, l, m-1, k);
-
-    return binary_search(v, m + 1, r, k);
-}
-~~~
-
-Esse algoritmo é interessante para muitas chaves, mas é altamente dependente da boa distribuição das chaves, caso os dados numéricos deem um salto muito grande (de 21 para 90), o algoritmo acaba por interpretar de forma incorreta, levando a um maior tempo de execução.
 
 ## Árvore binária de busca
 
