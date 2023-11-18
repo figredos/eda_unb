@@ -12,9 +12,9 @@ void selection_sort(int *v, int l, int r)
 
         if (menor != i)
         {
-            int t = i;
-            i = menor;
-            menor = i;
+            int t = v[i];
+            v[menor] = v[i];
+            v[i] = t;
         }
     }
 }

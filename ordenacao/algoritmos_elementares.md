@@ -124,29 +124,34 @@ O posicionamento de um item não garante a ordenação dos outros elementos no b
 
 ## Shell sort
 
-O algoritmo do shell sort parte da ideia da ordenação parcial a cada passagem, posteriormente ordenados pelo insertion sort. Essa implementação diminui o número de movimentações e possibilita a troca de itens distantes um do outro. Separa itens a uma distância *h* , rearranjando os itens e resultando em uma sequência ordenada para a distância *h*, ou ***h-ordenada***.
+O algoritmo do shell sort tenta melhorar o tempo de execução do insertion sort. Quando os dados estão muito desordenados, o insertion sort tem uma performance muito baixa, com isso em mente, Donald Shell propôs que a comparação fosse feita com elementos diferentes dos vizinhos imediatos, com elementos a uma distância ***h*** dos elementos. Essa aplicação diminui muito o tempo de execução do insertion sort em determinados arquivos. Separa itens a uma distância *h* , rearranjando os itens e resultando em uma sequência ordenada para a distância *h*, ou ***h-ordenada***.
 
-Quando *h = 1*, corresponde ao insertion sort. A maior dificuldade da implementação desse algoritmo, é determinar o tamanho de h. Donald Knuth (cientista da computação), recomenda algo em torno de 1/3 da entrada. Sequência multiplas de 2 não performam bem, itens em posições pares não confrontam itens em posições ímpares até o fim do processo e vice-versa.
+Quando *h = 1*, corresponde ao insertion sort. A maior dificuldade da implementação desse algoritmo, é determinar o tamanho de h. Donald Knuth (cientista da computação), recomenda algo em torno de 1/3 da entrada. Sequência múltiplas de 2 não performam bem, itens em posições pares não confrontam itens em posições ímpares até o fim do processo e vice-versa.
 
 ~~~C
 void shell_sort(int *v, int l, int r)
 {
     int h = 1;
 
-    while (h < (r - l + 1)/3)
-        h = 3*h + 1;
-
-    while (h >= 1)
-        for (int i = l; i <= r; i++)
-        {
+    for(; h <= (r - l) / 9; h = 3 * h + 1)
+        ;
+    
+    for(; h > 0; h /= 3)
+        for (int i = l + h; i <= (r - l); i++)
             for (int j = i; j >= l + h && v[j] < v[j - h]; j -= h)
             {
                 int t = v[j];
-                v[j] = v[j - 1];
-                v[j - 1] = t;
+                v[j] = v[j - h];
+                v[j - h] = v[j];
             }
-        }
-
-        h /= 3; 
+    
 }
 ~~~
+
+A complexidade assintótica do shell sort é complicada. Não é possível determinar precisamente qual ***O*** representa a complexidade do algoritmo de forma média, contudo, sabemos que no pior caso é $O(N^2)$ e no melhor $O(n log n)$
+
+Na maior parte dos casos é um algoritmo adaptativo, contudo, nem sempre se caracteriza assim.
+
+Não é um algoritmo estável, pois não mantém a ordem relativa dos dados.
+
+E finalmente, é um algoritmo in-place, vez que, não usa estruturas de dados extras nem memória significativa.
