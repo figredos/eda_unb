@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Função shell sort (otimização do insertion_sort)
 void shell_sort(int *v, int l, int r)
 {
     int h = 1;

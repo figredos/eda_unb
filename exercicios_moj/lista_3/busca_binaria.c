@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Função busca binária, retorna o indice v[j] >= x > v[j - 1] 
 int busca_binaria(int *v, int tam, int dado)
 {
     int l = 0, h = tam;

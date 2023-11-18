@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Função merge e merge_sort para ordenação de dados
 void merge(int *v, int l, int m, int r)
 {
     int *aux = malloc(sizeof(int) * (r - l + 1));

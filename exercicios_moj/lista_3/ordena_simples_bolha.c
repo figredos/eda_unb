@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Função bubble_sort para ordenar dados
 void bubble_sort(int *v, int l, int r)
 {
     int flag = 1;

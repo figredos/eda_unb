@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Struct que armazena a palavra chave e seu id em linguagem de maquina
 typedef struct instrucao
 {
     int id;
     char palavra_chave[16];
 } instrucao;
 
+//Função merge e merge_sort que ordenam com base no id das instruções
 void merge(instrucao *v, int l, int m, int r)
 {
     instrucao *auxiliar = (instrucao *)malloc(sizeof(instrucao) * (r - l));
@@ -39,6 +41,7 @@ void merge_sort(instrucao *v, int l, int r)
     merge(v, l, meio, r);
 }
 
+//Função busca binária que retorna o índice do id encontrado no vetor (caso exista) e -1 caso não 
 int busca_binaria(instrucao *v, int n, int dado)
 {
     int l = 0, h = n;

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Função selection_sort para ordenação de dados
 void selection_sort(int *v, int l, int r)
 {
     int menor;

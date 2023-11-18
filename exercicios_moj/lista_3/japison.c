@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+//Struct que guarda a palavra em japones e sua traducao
 typedef struct tradutor
 {
     char japones[100];
     char portugues[100];
 } tradutor;
 
+//Funções de merge e merge_sort para ordenação das palavras em japonês
 void merge(tradutor *v, int l, int m, int r)
 {
     tradutor *auxiliar = malloc(sizeof(tradutor) * (r - l));
@@ -39,6 +41,7 @@ void merge_sort(tradutor *v, int l, int r)
     merge(v, l, meio, r);
 }
 
+//Função busca binária que retorna o índice do dado no vetor caso exista, caso não retorna -1
 int busca_binaria(tradutor *v, int n, char *dado)
 {
     int l = 0, h = n;
@@ -56,6 +59,7 @@ int busca_binaria(tradutor *v, int n, char *dado)
     return -1;
 }
 
+//Não pode ler as entradas com scanf, pois ele não le a partir de um espaço ' '
 int main()
 {
     int t;
@@ -73,22 +77,22 @@ int main()
 
         for (int i = 0; i < m; i++)
         {
-            scanf("\n");
+            //Lendo as entradas, as armazenando e suas traduções nas structs
+            scanf("\n");    //Consumindo a linha vazia com scanf
+
+            //Lendo entradas
             fgets(vetor[i].japones, sizeof(vetor[i].japones), stdin);
             fgets(vetor[i].portugues, sizeof(vetor[i].portugues), stdin);
 
+            //Usando a função strcspn para encontrar o índice que contém '\n' e substitui-lo por '\0'
             vetor[i].japones[strcspn(vetor[i].japones, "\n")] = '\0';
             vetor[i].portugues[strcspn(vetor[i].portugues, "\n")] = '\0';
         }
 
+        //Ordenando as palavras em ordem alfabética (em japonês)
         merge_sort(vetor, 0, m);
 
-        // printf("\n");
-        // for (int i = 0; i < m; i++)
-        // {
-        //     printf("%s %s\n", vetor[i].japones, vetor[i].portugues);
-        // }
-
+        //Fazendo a leitura das palavras e buscando no vetor
         while (n--)
         {
             int indice = 0;
