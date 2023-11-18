@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Struct que salva os digitos do candidato e os votos
 typedef struct candidato
 {
-    long long votos, digitos;
+    int votos, digitos;
 } candidato;
 
+//Funções merge e merge_sort que ordenam com base na quantidade de votos
 void merge(candidato *v, int l, int m, int r)
 {
     candidato *auxiliar = malloc(sizeof(candidato) * (r - l));
@@ -39,49 +41,58 @@ void merge_sort(candidato *v, int l, int r)
 
 int main()
 {
+    //Inicializando variáveis e vetor de structs candidatos
     candidato *vetor = malloc(sizeof(candidato) * 100001);
-    long long s, f, e, voto, votos_validos = 0, votos_invalidos = 0;
-    long long votos_totais = 0;
+    int s, f, e, voto, votos_validos = 0, votos_invalidos = 0;
+    int votos_totais = 0;
 
-    scanf("%lld %lld %lld", &s, &f, &e);
+    //Lendo variáveis
+    scanf("%d %d %d", &s, &f, &e);
 
-    for (long long i = 10; i < 100000; i++)
+    //Inicializando o vetor com as 100000 possibilidades de digitos
+    for (int i = 10; i < 100000; i++)
         vetor[i].digitos = i;
 
-    while (scanf("%lld", &voto) != EOF)
+    //Lendo as entradas dos digitos contabilizando a quantidade de votos
+    while (scanf("%d", &voto) != EOF)
+        //Não existe a possibilidade de um voto valido ser menor que 10
         if (voto >= 10)
         {
+            //Incrementando o valor dos votos validos e o valor do atributo votos da struct candidato referente
             votos_validos++;
             vetor[voto].votos++;
         }
         else
             votos_invalidos++;
 
+    //Ordenando o vetor quanto aos votos para cada cargo (presidente 10-100, senador 100-1000, etc.)
     for (int i = 0, m = 10; i < 4; i++, m *= 10)
         merge_sort(vetor, m, m * 10);
 
-    for (long long i = 99; i >= 10; i--)
+    //Fazendo a contagem de votos para presidente
+    for (int i = 99; i >= 10; i--)
         votos_totais += vetor[i].votos;
 
-    printf("%lld %lld\n", votos_validos, votos_invalidos);
+    //Imprimindo os resultados
+    printf("%d %d\n", votos_validos, votos_invalidos);
 
     int percentual = (float)vetor[99].votos / (float)votos_totais >= 0.51 ? 1 : 0;
 
     if (percentual)
-        printf("%lld\n", vetor[99].digitos);
+        printf("%d\n", vetor[99].digitos);
     else
         printf("Segundo turno\n");
 
-    for (long long i = 999; s; i--, s--)
-        printf("%lld ", vetor[i].digitos);
+    for (int i = 999; s; i--, s--)
+        printf("%d ", vetor[i].digitos);
     printf("\n");
 
-    for (long long i = 9999; f; i--, f--)
-        printf("%lld ", vetor[i].digitos);
+    for (int i = 9999; f; i--, f--)
+        printf("%d ", vetor[i].digitos);
     printf("\n");
 
-    for (long long i = 99999; e; i--, e--)
-        printf("%lld ", vetor[i].digitos);
+    for (int i = 99999; e; i--, e--)
+        printf("%d ", vetor[i].digitos);
     printf("\n");
 
     printf("\n");
