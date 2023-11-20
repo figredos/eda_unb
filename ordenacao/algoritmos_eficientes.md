@@ -91,3 +91,71 @@ void mergeBU_sort(int *v, int l, int r)
 ### MERGE SORT X SHELL SORT
 
 Os tempos de execução do merge sort e do shell sort são similares, diferindo em pequenos fatores constantes, porém, ainda não se comprovou que o shell sort é $O(n log n)$ para dados aleatórios. Portanto, o crescimento assintótico do shell sort nos casos médios pode ser alto.
+
+
+## QUICK SORT
+
+O algoritmo do Quick Sort é um dos algoritmos mais utilizados, isso se deve ao fato de ser um algoritmo simples e eficiente. É um algoritmo muito pesquisado, tornando-o bem embasado e bem comprovado. A implementação desse algoritmo se baseia no uso de divisão e conquista, particionando o vetor em subsetores, ordenando cada um independentemente.
+
+Particionar é o processo crucial desse algoritmo, escolhemos um pivô e reorganizamos os elementos de acordo com esse elemento de referência. Esse elemento está em sua posição final, é responsável por marcar a divisão dos sub-vetores. Repetimos esse processo até que todos os elementos estiverem ordenados. Algumas condições devem ser satisfeitas, o elemento a[j] está na posição final dentro do vetor, Nenhum elemento anterior ao a[j] é maior que a[j] e nenhum elemento posterior ao a[j] é menor que o a[j].
+
+~~~C
+int particao(int *v, int l, int r)
+{
+    //Definimos o pivô como o elemento mais a esquerda
+    int pivo = v[r];
+    int j = l;
+
+    for(int i = l; i < r; i++)
+    {
+        if(v[i] < pivo)
+        {
+            int t = v[j];
+            v[j] = v[i];
+            v[i] = t;
+        }
+        else if(v[j] < pivo)
+            j = i;
+    }
+
+    int t = v[j];
+    v[j] = v[r];
+    v[r] = t;
+
+    return j;
+}
+
+void quick_sort(int *v, int l, int r)
+{
+    if(l > r)
+        return;
+    
+    int p = particao(v, l, r);
+
+    quick_sort(v, l, p - 1);
+    quick_sort(v, p + 1, r);
+}
+
+~~~
+
+O algoritmo acima faz a seguinte função:
+
+1. Quando chamada a função *quick_sort()*, são passados os índices do elemento mais a esquerda e mais a direita.
+
+2. A primeira verificação é feita, para saber se o tamanho do vetor é válido (se o índice mais da direita é maior que o da direita).
+
+3. É feita a chamada da função *particao*
+
+    3.1. A função *particao* é responsável por achar um pivô adequado, ela faz isso definindo o elemento mais a direita do vetor como pivô e percorrendo o vetor com um loop for usando a variável ***i***, procurando um elemento maior que esse pivô. Salvamos na variável ***j*** o valor do índice mais a esquerda, uma vez que achamos um elemento com valor maior ou igual ao valor do pivô, mudamos o valor de ***j*** para o contador percorrendo o vetor ***i***. A função retorna o valor final de ***j***.
+
+4. Com o valor retornado pela função *particao* salvo na variável p, fazemos a chamada recursiva da função *quick_sort()* para os elementos a direita e a esquerda do pivô.
+
+A chamada recursiva de *quick_sort()*, como citado acima, é a parte mais importante da ordenação. Uma vez que decidimos um pivô, fazemos a ordenação apenas para os lados, uma vez que esse elemento já está na sua posição final.
+
+A complexidade Assintótica no melhor e no caso médio é de  $O(n log n)$.
+
+Apenas a parte recursiva pode ser considerada in-place.
+
+Não é um código estável, não mantendo a ordem relativa.
+
+Não e um algoritmo com adaptatividade, vez que ao invés da ordenação ajudar a melhorar o desempenho, pode cair nos piores casos.
