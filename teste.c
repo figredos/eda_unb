@@ -7,45 +7,35 @@ typedef struct elemento
     struct elemento *prox;
 } elemento;
 
-void insert_ordenado(elemento **lista, elemento *novo)
+void selection_sort(elemento *h)
 {
-    if ((*lista) == NULL || (*lista)->dado >= novo->dado)
-    {
-        novo->prox = (*lista);
-        (*lista) = novo;
-    }
-    else
-    {
-        elemento *temp = *lista;
-        while (temp->prox != NULL && temp->prox->dado < novo->dado)
-            temp = temp->prox;
+    elemento *temp = h;
 
-        novo->prox = temp->prox;
-        temp->prox = novo;
+    while (temp)
+    {
+        elemento *menor = temp;
+        elemento *r = temp->prox;
+
+        while (r)
+        {
+            if(menor->dado > r->dado)
+                menor = r;
+            r = r->prox;
+        }
+
+        int t = temp->dado;
+        temp->dado = menor->dado;
+        menor->dado = t;
+        
+        temp = temp->prox;
     }
+    
 }
 
-void insertion_sort(elemento **h)
+void imprime(elemento *h)
 {
-    elemento *atual = *h;
-    elemento *h_ordenada = NULL;
-
-    while (atual)
-    {
-        elemento *prox = atual->prox;
-
-        insert_ordenado(&h_ordenada, atual);
-
-        atual = prox;
-    }
-
-    *h = h_ordenada;
-}
-
-void imprime(elemento *v)
-{
-    for (elemento *i = v; i != NULL; i = i->prox)
-        printf("%d -> ", i->dado);
+    for (elemento *t = h; t; t = t->prox)
+        printf("%d -> ", t->dado);
 
     printf("NULL\n");
 }
@@ -76,14 +66,11 @@ int main()
         }
     }
 
-    // Print the original list
     printf("Original:\n");
     imprime(head);
 
-    // Sort the list using bubble sort
-    insertion_sort(&head);
+    selection_sort(head);
 
-    // Print the sorted list
     printf("\nOrdenada:\n");
     imprime(head);
 
