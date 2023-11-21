@@ -1,20 +1,33 @@
 #include <stdio.h>
 
-void selection_sort(int *v, int l, int r)
+typedef struct elemento
 {
-    int menor;
-    for (int i = l; i < r; i++)
-    {
-        menor = i;
-        for (int j = i + 1; j < r; j++)
-            if (v[j] < v[menor])
-                menor = j;
+    int dado;
+    struct elemento *prox;
+} elemento;
 
-        if (menor != i)
+void selection_sort(elemento *h)
+{
+    elemento *temp;
+    
+    while (temp)
+    {
+        elemento *menor;
+        elemento *r;
+
+        while (r)
         {
-            int t = v[i];
-            v[menor] = v[i];
-            v[i] = t;
+            if(menor->dado > r->dado)
+                menor = r;
+            
+            r = r->prox;
         }
+        
+        int t = temp->dado;
+        temp->dado = menor->dado;
+        menor->dado = t;
+
+        temp = temp->prox;
     }
+    
 }
