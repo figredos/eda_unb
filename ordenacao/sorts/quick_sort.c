@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void troca(int* a, int* b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
 int particao(int *v, int l, int r)
 {
     int pivo = v[r];
@@ -10,17 +16,12 @@ int particao(int *v, int l, int r)
     {
         if(v[i] < pivo)
         {
-            int t = v[j];
-            v[j] = v[i];
-            v[i] = t;
+            troca(&v[i], &v[j]);
+            j++;
         }
-        else if(v[j] < pivo)
-            j = i;
     }
 
-    int t = v[j];
-    v[j] = v[r];
-    v[r] = t;
+    troca(&v[r], &v[j]);
 
     return j;
 }
